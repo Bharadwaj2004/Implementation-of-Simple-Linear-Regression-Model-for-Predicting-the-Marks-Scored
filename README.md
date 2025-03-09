@@ -8,90 +8,74 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. mport the required libraries and read the dataframe.
-2. Assign hours to X and scores to Y.
-3. Implement training set and test set of the dataframe.
-4. Plot the required graph both for test data and training data.
-5. Find the values of MSE , MAE and RMSE.
+1. Import the standard Libraries.
+2. Set variables for assigning dataset values.
+3. Import linear regression from sklearn.
+4. Assign the points for representing in the graph.
+5. Predict the regression for the marks by using the representation of the graph.
+6. Hence we obtained the linear regression for the given dataset.
 
 ## Program:
 ```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: B.venkata bharadwaj
-RegisterNumber: 212222240020
+Developed by: VENKATA BHARADWAJ.B
+RegisterNumber:  212222240020
+*/
+```
 
+```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error,mean_squared_error
-df=pd.read_csv('/content/student_scores.csv')
-
-df.head()
-
-df.tail()
-
-x=df.iloc[:,:-1].values
-x
-
-y=df.iloc[:,1].values
-y
-
+df=pd.read_csv('/content/ml CSV.csv')
+df.head(10)
+plt.scatter(df['x'],df['y'])
+plt.xlabel('x')
+plt.ylabel('y')
+x=df.iloc[:,0:-1]
+y=df.iloc[:,-1]
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
-
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
 from sklearn.linear_model import LinearRegression
-regressor=LinearRegression()
-regressor.fit(x_train,y_train)
-y_pred=regressor.predict(x_test)
-
-y_pred
-
-y_test
-
-y_test
-plt.scatter(x_train,y_train,color='black')
-plt.plot(x_train,regressor.predict(x_train),color='purple')
-plt.title("Hours vs scores(Training set)")
-plt.xlabel("Hours")
-plt.ylabel("Scrores")
-plt.show()
-
-plt.scatter(x_test,y_test,color='red')
-plt.plot(x_train,regressor.predict(x_train),color='blue')
-plt.title("Hours vs scores(Training set)")
-plt.xlabel("Hours")
-plt.ylabel("Scrores")
-plt.show()
-
-mse=mean_squared_error(y_test,y_pred)
-print('MSE = ',mse)
-mae=mean_absolute_error(y_test,y_pred)
-print('MAE = ',mae)
-rmse=np.sqrt(mse)
-print("RMSE = ",rmse)
-*/
+lr=LinearRegression()
+lr.fit(x_train,y_train)
+x_train
+y_train
+lr.predict(x_test.iloc[0].values.reshape(1,1))
+plt.scatter(df['x'],df['y'])
+plt.xlabel('x')
+plt.ylabel('y')
+plt.plot(x_train,lr.predict(x_train),color='orange')
+lr.coef_
+lr.intercept_
 ```
 
 ## Output:
 
-![image](https://user-images.githubusercontent.com/119389139/230030388-5cc59fa1-179f-40a1-b039-bd91ee6b04f1.png)
+## 1. Dataset:
 
-![image](https://user-images.githubusercontent.com/119389139/230030496-11aee79a-91f1-4641-88a3-9a63ef1742e3.png)
+![2 1](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/39044f33-3de2-4dba-a406-4fc8966b7dc2)
 
-![image](https://user-images.githubusercontent.com/119389139/230030599-fdde8425-5b46-425e-a4b9-45cd5d363436.png)
+## 2.  Graph of plotted data:
 
-![image](https://user-images.githubusercontent.com/119389139/230030817-fcb96383-b463-4ac3-a5fc-ac5dfcbf5721.png)
+![2 2](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/31e506d3-4a00-49ee-8ae7-80540735b946)
 
-![image](https://user-images.githubusercontent.com/119389139/230031140-bf4c46e9-dc2f-4cc4-b23c-37d6d73fcc62.png)
+## 3.  Performing Linear Regression:
 
-![image](https://user-images.githubusercontent.com/119389139/230033037-d05b409c-8022-48b9-b423-a116b81090b5.png)
+![2 3](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/1d7ffebc-7c31-4ccb-945b-de920d2b132f)
 
-![image](https://user-images.githubusercontent.com/119389139/230034346-339ed1aa-9572-4a0b-aca6-5fbf458cded9.png)
+## 4.  Trained data:
 
-![image](https://user-images.githubusercontent.com/119389139/230033991-1ca0ee04-3ca5-4dde-a0bd-db2935d38122.png)
+![2 4](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/ff2f5e4d-e483-471c-943f-cd8caecf318d)
 
-![image](https://user-images.githubusercontent.com/119389139/230033345-669e2734-ae50-4242-92f4-fa526a6fd3df.png)
+## 5.  Predicting the line of Regression:
+
+![2 5](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/63b7de8b-0137-45b1-9c4c-90b3e3dab59c)
+
+## 6.  Coefficient and Intercept values:
+
+![2 6](https://github.com/SaiPraneeth04/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/119390353/57d33c39-9c94-4730-9895-665674a76709)
 
 
 ## Result:
